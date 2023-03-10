@@ -28,7 +28,7 @@ namespace nNFSEautomation
                     tryAmout++;
                 }
             } while (tryAmout < tries);
-            throw new Exception("Não foi possível encontrar o elemento!");
+                throw new Exception("Não foi possível encontrar o elemento!");
         }
     }
 }

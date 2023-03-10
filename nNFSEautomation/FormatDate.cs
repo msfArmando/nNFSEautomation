@@ -8,8 +8,10 @@ namespace nNFSEautomation
 {
     public class FormatDate
     {
-        public string FormatMonth(string month)
+        public void FormatMonth(string month)
         {
+            month = $"{Automations.MonthOfDateRequest.Substring(0, 3)}";
+
             if (month == "jan")
                 int.Parse(month = "01");
             else if (month == "fev")
@@ -36,17 +38,28 @@ namespace nNFSEautomation
                 int.Parse(month = "12");
             else
                 throw new Exception("Mês inválido!");
-            return month;
+
+            Automations.MonthOfDateRequest = month;
         }
 
-        public string FormatDay(string day)
+        public void FormatDay(string day)
         {
             if (int.Parse(day) < 10)
-                return $"0{day}";
+                Automations.DayOfDateRequest = $"0{day}";
             else if (int.Parse(day) >= 10 && int.Parse(day) <= 31)
-                return $"{day}";
+                Automations.DayOfDateRequest = $"{day}";
             else
                 throw new Exception("Dia inválido.");
+        }
+
+        public void FormatYear(string year)
+        {
+            if(int.Parse(year) < int.Parse(DateTime.Now.Year.ToString()) && int.Parse(year) > 1000)
+            {
+                Automations.YearOfDateRequest = year;
+            }
+            else
+                throw new Exception("Ano inválido!");
         }
     }
 }

@@ -15,44 +15,34 @@ namespace nNFSEautomation
         public static void Main(string[] args)
         {
             bool ciclo = true;
-            bool userValid = false;
-            bool passwordValid = false;
             var userLogin = string.Empty;
             var passwordLogin = string.Empty;
-            bool cicloDate;
 
             Automations auto = new();
 
             auto.GoToWebSite("https://notajoseense.sjc.sp.gov.br/notafiscal/paginas/portal/login.html");
-            WebDriver.Driver.FindElement(By.XPath(PathsToAutomations.ByEyePassword)).Click();
 
             while (ciclo)
             {
-                if (userValid != true)
+                Console.WriteLine("Digite seu CPF ou CNPJ: ");
+                userLogin = Console.ReadLine();
+                if (userLogin == "")
                 {
-                    Console.WriteLine("Digite seu CPF ou CNPJ: ");
-                    userLogin = Console.ReadLine();
-                    if (userLogin == "")
-                    {
-                        Console.WriteLine("O campo não pode ser nulo!");
-                        continue;
-                    }
-                    else if (Regex.IsMatch(userLogin, @"^\d+$") == false)
-                    {
-                        Console.WriteLine("O campo não aceita letras!");
-                        continue;
-                    }
+                    Console.WriteLine("O campo não pode ser nulo!");
+                    continue;
+                }
+                else if (Regex.IsMatch(userLogin, @"^\d+$") == false)
+                {
+                    Console.WriteLine("O campo não aceita letras!");
+                    continue;
                 }
 
-                if (passwordValid != true)
+                Console.WriteLine("Digite sua senha: ");
+                passwordLogin = Console.ReadLine();
+                if (passwordLogin == "")
                 {
-                    Console.WriteLine("Digite sua senha: ");
-                    passwordLogin = Console.ReadLine();
-                    if (passwordLogin == "")
-                    {
-                        Console.WriteLine("O campo não pode ser nulo!");
-                        continue;
-                    }
+                    Console.WriteLine("O campo não pode ser nulo!");
+                    continue;
                 }
 
                 try
